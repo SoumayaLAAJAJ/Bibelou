@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.name}}{% endblock %}
+
+{% block body %}
+{# {{ dump(article) }} #}
+
+<section class="row mt-5">
+    <div class="col-12 col-md-4 col-xl-3">
+        <img src="{{ asset('images/articles/' ~ article.imageName) }}" alt="" class="img-fluid">
+    </div>
+    <div class="col-12 col-md-4 col-xl-4">
+    <h2>{{ article.name }}</h2>
+    <p class="m-5">{{ article.description|raw|capitalize }}</p>
+    </div>
+</section>
+{% endblock %}

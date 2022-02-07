@@ -1,0 +1,175 @@
+/* import des typos */
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Mukta&family=Roboto:wght@300&display=swap');
+
+/* *{
+    padding: 0;
+    margin: 0;
+} */
+
+
+
+/* bandeau colorée */
+.bordure{
+    height:30px;
+}
+
+.rouge{
+    background-color: #F23545;
+}
+
+.orange{
+    background-color: orange;
+}
+
+.jaune{
+    background-color: #fff42b;
+}
+
+.vert{
+    background-color: #22B14C;
+}
+
+.bleu{
+    background-color: #3B4FBF;
+}
+
+.violette{
+    background-color: #4807a3;
+}
+
+/* icones */
+.items{
+    display: flex;
+    
+}
+
+/* img{
+    width:2rem;
+} */
+
+
+.search-bar{
+    height: 2.1rem;
+}
+
+/* texte */
+h1{
+    font-size: 4rem;
+    font-family: 'Chewy', cursive;
+    text-align: center;
+    padding-top: 25px;
+    color: #1a1718;
+}
+
+h2{
+    font-size: 1.5rem;
+    font-family: 'Mukta', sans-serif;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* navbar */
+
+#menu{
+    background-color: #FFD185;
+
+}
+
+.li-menu{
+    display: inline;
+    padding-left: 20px;
+    /* margin-right: 10px; */
+    padding-right: 30px;
+    font-size: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+    color:black
+}
+
+a.btn-navbar:link, a.btn-navbar:visited{
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+}
+
+a.btn-navbar:hover, a.btn-navbar:active{
+    color: black;
+    background-color: #ffb685;
+}
+
+.full-screen-menu{
+    background-color: rgba(255, 92, 135, 11);
+    position: absolute;
+    z-index:1;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+}
+
+.full-screen-menu li{
+    display: block;
+}
+
+.bt-menu-open{
+    position: absolute;
+    z-index: 2;
+}
+
+img.icone{
+    width: 30px;
+}
+
+/* gérer les icones */
+.mobile-visible{
+    display: block;
+}
+
+.mobile-hidden{
+    display: none;
+    margin-left: 3rem;
+}
+
+
+.card img:hover{
+    -webkit-box-shadow: 2px 2px 5px 3px rgba(0,0,0,0.4);
+    box-shadow: 2px 2px 5px 3px rgba(0,0,0,0.4);
+    cursor: pointer;
+}
+
+
+/* X-Small devices (portrait phones, less than 576px)
+/* No media query for `xs` since this is the default in Bootstrap */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+    .mobile-visible{
+        display: block;
+    }
+    .mobile-hidden{
+        display: none;
+    }
+
+}
+
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+    .mobile-visible, .mobile-hidden{
+        display: block;
+    }
+    .search-bar-nav{
+        display: none;
+    }
+    .li-bt-burger{
+        display: none;
+    }
+} 
+
+/* Large devices (desktops, 992px and up)
+@media (min-width: 992px) {  } */
+
+/* X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { } */
+
+/* XX-Large devices (larger desktops, 1400px and up) 
+@media (min-width: 1400px) {  }  */
