@@ -1,0 +1,43 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Liste des Catégories{% endblock %}
+
+{% block body %}
+    <h1>Liste des Catégories</h1>
+    <a href="{{ path('admin_category_new') }}" class="btn btn-success mb-3 mt-2">Ajouter nouvelle catégorie</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                {# <th>Description</th> #}
+                {# <th>ImageName</th> #}
+                {# <th>UpdatedAt</th> #}
+                <th>Slug</th>
+                <th class="text-end">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                {# <td>{{ category.description }}</td> #}
+                {# <td>{{ category.imageName }}</td> #}
+                {# <td>{{ category.updatedAt ? category.updatedAt|date('Y-m-d H:i:s') : '' }}</td> #}
+                <td>{{ category.slug }}</td>
+                <td class="text-end">
+                    <a href="{{ path('admin_category_show', {'id': category.id}) }}" class="btn btn-primary me-2">Voir le rendu</a>
+                    <a href="{{ path('admin_category_edit', {'id': category.id}) }}" class="btn btn-success">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucune entrée trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

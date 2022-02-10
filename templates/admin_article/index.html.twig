@@ -1,0 +1,42 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Articles{% endblock %}
+
+{% block body %}
+    <a href="{{ path('admin_article_new') }}" class="btn btn-dark mb-3">Nouvel article</a>
+    <h1>Article index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Id</th>
+                <th>Nom</th>
+                {# <th>Description</th> #}
+                <th>Mis à jour le</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td><img src="{{asset('images/articles/' ~ article.imageName )}}" alt="" class="img-list">
+                </td>
+                <td>{{ article.id }}</td>
+                <td>{{ article.name }}</td>
+                {# <td>{{ article.description }}</td> #}
+                <td>{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td class="text-end">
+                    <a href="{{ path('admin_article_show', {'id': article.id}) }}" class="btn btn-primary">Voir le rendu</a>
+                    <a href="{{ path('admin_article_edit', {'id': article.id}) }}" class="btn btn-success">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun article dans la base de données</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

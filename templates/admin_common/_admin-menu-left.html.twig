@@ -1,0 +1,64 @@
+            <nav id="sidebar" class="sidebar js-sidebar">
+                <div class="sidebar-content js-simplebar">
+                    <a class="sidebar-brand" href="{{path('admin')}}">
+                <span class="align-middle">Bibelou Admin</span>
+                    </a>
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-item active">
+                            <a class="sidebar-link" href="{{path('admin')}}">
+                <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+                </a>
+                        </li>
+                        <li class="sidebar-header">
+                            Utilisateurs
+                        </li>
+
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="pages-profile.html">
+                <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profil</span>
+                </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="pages-sign-in.html">
+                <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Sign In</span>
+                </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="pages-sign-up.html">
+                <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Sign Up</span>
+                </a>
+                        </li>
+
+                        
+
+                        <li class="sidebar-header">
+                            Contenus
+                        </li>
+
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{ path('admin_category_index') }}">
+                <i class="align-middle" data-feather="paperclip"></i> <span class="align-middle">Catégories</span>
+                </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{path('admin_article_index')}}">
+                <i class="align-middle" data-feather="shopping-bag"></i> <span class="align-middle">Articles</span>
+                </a>
+                        </li>
+
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{path('admin_apropos_index')}}">
+                <i class="align-middle" data-feather="pen-tool"></i> <span class="align-middle">A propos</span>
+                </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </nav>
