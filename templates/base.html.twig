@@ -37,17 +37,20 @@
                 <div class="col bordure violette"></div>
             </div>
 
-
+{# BARRE DE RECHERCHE  #}
             <div class="row justify-content-between mb-5 icone">
                 <nav class="navbar navbar-light col-md-5 mobile-hidden">
                     <div class="container-fluid">
-                        <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <form class="d-flex" method="post" action="{{path('search-article')}}">
+                        <input class="form-control me-2" type="text" name="search" placeholder="Rechercher un article" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                     </div>
                 </nav>
-                
+{# FIN BARRE DE RECHERCHE #}
+
+
+{# ICONES ET FONCTIONNALITES #}
                 <div class="col-md-3 items">
                     <div id="cart-icon" class=" mobile-visible">
                         <img class="icone" src="{{asset('images/icones/cart.png')}}" alt="">
