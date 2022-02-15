@@ -41,9 +41,23 @@
             <div class="card-body d-flex flex-wrap">
                 <div>
                     <h5 class="card-title d-block">{{article.name}}</h5>
-                    <p class="card-text w-100">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p class="card-text w-100">{{article.description}}</p>
                 </div>
-                <a href="#" class="btn btn-primary align-self-end mt-3">Go somewhere</a>
+                <div class="d-flex flex-wrap">
+                    <a href="#" class="btn btn-primary align-self-end mt-3">Selectionner</a>
+                    
+                    {% if is_granted('ROLE_USER') %}
+                        {% if article not in app.user.articles %}
+                        <a href="#" class="btn btn-danger align-self-end  mt-3 bt-list" data-articleid={{ article.id }}>Ajouter aux favoris
+                            <img src="{{asset('images/icones/love.png')}}" class="icone" alt="">
+                            {# <i class="fab fa-gratipay bt-list" title="Ajouter à ma liste" data-articleid="{{ article.id }}"></i> #}
+                        </a>
+                        {% endif %}
+                    {% endif %}
+                    {# {{dump(app.user)}} #}
+                
+                </div>
+
             </div>
             </div>
         {% endfor %}
@@ -58,5 +72,23 @@
 
 
 {% endif %}
+
+    {% block javascripts %}
+    <script>
+    $(".bt-list").on("click", function(event){
+        event.preventDefault();
+        var articleid = $(this).attr('data-articleid');
+        var currentBt = $(this);
+        $.ajax({
+            url: '/user/addarticle',
+            type: 'POST',
+            data: 'id='+articleid
+        }).done(function(response){
+            //alert(response);
+            $(currentBt).fadeOut();
+        });
+    });
+    </script>
+    {% endblock %}
 
 {% endblock %}

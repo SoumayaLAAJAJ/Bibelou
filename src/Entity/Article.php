@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -53,6 +55,30 @@ class Article
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="articles")
      */
     private $category;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Color::class, inversedBy="articles")
+     */
+    private $color;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Size::class, inversedBy="articles")
+     */
+    private $size;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="articles")
+     */
+    private $users;
+
+
+
+
+    public function __construct()
+    {
+        $this->Color = new ArrayCollection();
+        $this->users = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -147,4 +173,69 @@ class Article
 
         return $this;
     }
+
+    /**
+     * @return Collection|Color[]
+     */
+    public function getColor(): Collection
+    {
+        return $this->Color;
+    }
+
+    public function addColor(Color $color): self
+    {
+        if (!$this->Color->contains($color)) {
+            $this->Color[] = $color;
+        }
+
+        return $this;
+    }
+
+    public function removeColor(Color $color): self
+    {
+        $this->Color->removeElement($color);
+
+        return $this;
+    }
+
+    public function getSize(): ?Size
+    {
+        return $this->size;
+    }
+
+    public function setSize(?Size $size): self
+    {
+        $this->size = $size;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeArticle($this);
+        }
+
+        return $this;
+    }
+
+    
 }

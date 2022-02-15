@@ -29,6 +29,7 @@ class UserFixtures extends Fixture
         $user->setRoles(["ROLE_USER", "ROLE_ADMIN"]);
         $password = $this->encoder->hashPassword($user, "admin");
         $user->setPassword($password);
+        $user->setIsVerified(true);
         $manager->persist($user);
 
         // 
@@ -40,6 +41,7 @@ class UserFixtures extends Fixture
         $user->setRoles(["ROLE_USER"]);
         $password = $this->encoder->hashPassword($user, "admin");
         $user->setPassword($password);
+        $user->setIsVerified(true);
         $manager->persist($user);
 
         $manager->flush();

@@ -22,6 +22,8 @@ class ArticleType extends AbstractType
             ->add('imageFile', FileType::class, ['label'=>'Image'])
             ->remove('updatedAt')
             ->add('category', null, ['label'=>'Catégorie'])
+            ->add("color")
+            ->add('size')
         ;
     }
 
