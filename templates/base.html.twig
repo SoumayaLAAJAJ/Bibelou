@@ -56,7 +56,9 @@
                         <img class="icone" src="{{asset('images/icones/cart.png')}}" alt="">
                     </div>
                     <div class="mobile-hidden">
+                        <a href="{{path('profile')}}">
                         <img  class="icone" src="{{asset('images/icones/love.png')}}" alt="">
+                        </a>
                     </div>
                     <div class="mobile-hidden">
                         {% if is_granted('ROLE_USER') %}

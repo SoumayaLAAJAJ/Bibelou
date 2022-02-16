@@ -4,4 +4,37 @@
 
 {% block body %}
 
+
+<div id="carouselExampleControls" class="carousel slide bg-carousel" data-bs-ride="carousel">
+    <div class="carousel-inner">
+    {% for carousel in carousels %}
+    {% if loop.index0 == 0 %}
+        {% set active = "active" %}
+        {% else %}
+        {% set active = "" %}
+        {% endif %}
+        <div class="carousel-item {{active}}">
+            <div class="row">
+                <img src="{{ asset('images/carousel/' ~ carousel.imageName) }}" class="col-12 col-md-5" alt="...">
+
+                <div class="col-12 col-md-7 align-self-center">
+                    <h5 class="mb-5">{{carousel.title}}</h5>
+                    <br>
+                    <p>{{carousel.texte}}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+        
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
 {% endblock %}

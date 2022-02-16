@@ -68,6 +68,9 @@ h2{
     margin-bottom: 50px;
 }
 
+
+
+
 /* navbar */
 
 #menu{
@@ -136,6 +139,11 @@ img.icone{
     cursor: pointer;
 }
 
+
+/* carroussel */
+.bg-carousel{
+    background-color: #ffbb5c48;
+}
 
 /* X-Small devices (portrait phones, less than 576px)
 /* No media query for `xs` since this is the default in Bootstrap */
