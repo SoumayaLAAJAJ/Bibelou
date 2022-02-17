@@ -12,7 +12,16 @@
     </div>
     <div class="col-12 col-md-4 col-xl-4">
     <h2>{{ article.name }}</h2>
-    <p class="m-5">{{ article.description|raw|capitalize }}</p>
+    <h2>{{article.price|number_format(2)}} €</h2>
+    
+    <div class="d-flex">
+        <div>Couleur :</div>
+        {% for color in article.colors %}
+            <div style="width:20px; height:20px; background-color:{{color.field}}; margin-left:5px;"></div>   
+        {% endfor %}
+    </div>
+
+    <p class="m-5">{{ article.description|raw }}</p>
     </div>
 </section>
 {% endblock %}

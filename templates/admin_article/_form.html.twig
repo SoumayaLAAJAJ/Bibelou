@@ -1,4 +1,31 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.imageFile) }}
+    {{ form_row(form.category) }}
+    {{ form_row(form.size) }}
+    {{ form_row(form.price) }}
+
+    <button type="button"
+        class="add-another-collection-widget btn btn-primary mb-3"
+        data-list-selector="#color-fields-list">Ajouter une nouvelle couleur</button>
+
+    <section id="color-fields-list" class="d-flex"
+        data-prototype='{{ form_widget(form.colors.vars.prototype)|e }}<button  class="btn-remove-color">Supprimer</button>'
+        data-widget-tags="{{ '<div class="d-flex"></div>'|e }}"
+        data-widget-counter="{{ form.colors|length }}">
+    {% for color in form.colors %}
+        <div class="d-flex">
+            {# {{ form_errors(color) }} #}
+            {{ form_widget(color) }}
+            <a href="" class="btn-remove-color">Supprimer</a>
+        </div>
+    {% endfor %}
+    </section>
+
+
+
+    
     <button class="btn btn-success">{{ button_label|default('Sauvegarder') }}</button>
+
 {{ form_end(form) }}

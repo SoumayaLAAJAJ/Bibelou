@@ -56,10 +56,7 @@ class Article
      */
     private $category;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Color::class, inversedBy="articles")
-     */
-    private $color;
+
 
     /**
      * @ORM\ManyToOne(targetEntity=Size::class, inversedBy="articles")
@@ -71,6 +68,15 @@ class Article
      */
     private $users;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Color::class, mappedBy="articles", cascade={"persist", "remove"})
+     */
+    private $colors;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $price;
 
 
 
@@ -78,6 +84,7 @@ class Article
     {
         $this->Color = new ArrayCollection();
         $this->users = new ArrayCollection();
+        $this->colors = new ArrayCollection();
     }
 
 
@@ -133,7 +140,7 @@ class Article
 
     public function setDescription(?string $description): self
     {
-        $this->description = $description;
+        $this->description = ucfirst($description);
 
         return $this;
     }
@@ -174,29 +181,6 @@ class Article
         return $this;
     }
 
-    /**
-     * @return Collection|Color[]
-     */
-    public function getColor(): Collection
-    {
-        return $this->Color;
-    }
-
-    public function addColor(Color $color): self
-    {
-        if (!$this->Color->contains($color)) {
-            $this->Color[] = $color;
-        }
-
-        return $this;
-    }
-
-    public function removeColor(Color $color): self
-    {
-        $this->Color->removeElement($color);
-
-        return $this;
-    }
 
     public function getSize(): ?Size
     {
@@ -236,6 +220,47 @@ class Article
 
         return $this;
     }
+
+    /**
+     * @return Collection|Color[]
+     */
+    public function getColors(): Collection
+    {
+        return $this->colors;
+    }
+
+    public function addColor(Color $color): self
+    {
+        if (!$this->colors->contains($color)) {
+            $this->colors[] = $color;
+            $color->addArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeColor(Color $color): self
+    {
+        if ($this->colors->removeElement($color)) {
+            $color->removeArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function getPrice(): ?string
+    {
+        return $this->price;
+    }
+
+    public function setPrice(string $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    
 
     
 }

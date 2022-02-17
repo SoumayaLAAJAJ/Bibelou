@@ -20,7 +20,7 @@ class Color
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $name;
 
@@ -30,9 +30,15 @@ class Color
     private $field;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Article::class, mappedBy="Color")
+     * @ORM\ManyToMany(targetEntity=Article::class, inversedBy="colors")
      */
     private $articles;
+
+
+
+
+
+    
 
     public function __construct()
     {
@@ -85,7 +91,6 @@ class Color
     {
         if (!$this->articles->contains($article)) {
             $this->articles[] = $article;
-            $article->addColor($this);
         }
 
         return $this;
@@ -93,9 +98,7 @@ class Color
 
     public function removeArticle(Article $article): self
     {
-        if ($this->articles->removeElement($article)) {
-            $article->removeColor($this);
-        }
+        $this->articles->removeElement($article);
 
         return $this;
     }

@@ -17,8 +17,18 @@
                 <td>{{ article.name }}</td>
             </tr>
             <tr>
+                <th>Prix</th>
+                <td>{{ article.price }}</td>
+            </tr>
+            <tr>
                 <th>Couleur</th>
-                <td>{{ article.Color }}</td>
+                <td>
+
+                {% for color in article.colors %}
+                <div style="width:20px; height:20px; background-color:{{color.field}}"></div>
+                
+                {% endfor %}
+                </td>
             </tr>
             <tr>
                 <th>Taille</th>
@@ -26,7 +36,7 @@
             </tr>
             <tr>
                 <th>Description</th>
-                <td>{{ article.description }}</td>
+                <td>{{ article.description|raw }}</td>
             </tr>
             <tr>
                 <th>Image</th>
