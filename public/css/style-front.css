@@ -78,15 +78,7 @@ h2{
 
 }
 
-.li-menu{
-    display: inline;
-    padding-left: 20px;
-    /* margin-right: 10px; */
-    padding-right: 30px;
-    font-size: 1.5rem;
-    font-family: 'Roboto', sans-serif;
-    color:black
-}
+
 
 a.btn-navbar:link, a.btn-navbar:visited{
     display: inline-block;
@@ -94,13 +86,12 @@ a.btn-navbar:link, a.btn-navbar:visited{
     color: black;
 }
 
-a.btn-navbar:hover, a.btn-navbar:active{
+/* a.btn-navbar:hover, a.btn-navbar:active{
     color: black;
-    background-color: #ffb685;
-}
+    
+} */
 
 .full-screen-menu{
-    background-color: rgba(255, 92, 135, 11);
     position: absolute;
     z-index:1;
     width:100%;

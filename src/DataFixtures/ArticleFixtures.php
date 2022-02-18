@@ -19,7 +19,9 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
         $article->setImageName("chemise1.jpg");
         $article->setUpdatedAt(new DateTimeImmutable());
         // $article->setColor("noir");
+        $article->setPrice("14");
         $article->setCategory($this->getReference(CategoryFixtures::CATEGORY_HAUT));
+        $article->setSize($this->getReference(SizeFixtures::M));
         $manager->persist($article);
         
 
@@ -28,7 +30,9 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
         $article->setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
         $article->setImageName("jupe1.jpg");
         $article->setUpdatedAt(new DateTimeImmutable());
+        $article->setPrice("14");
         $article->setCategory($this->getReference(CategoryFixtures::CATEGORY_JUPE));
+        $article->setSize($this->getReference(SizeFixtures::XS));
         $manager->persist($article);
 
         $article = new Article();
@@ -36,7 +40,9 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
         $article->setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
         $article->setImageName("pantalon1.jpg");
         $article->setUpdatedAt(new DateTimeImmutable());
+        $article->setPrice("14");
         $article->setCategory($this->getReference(CategoryFixtures::CATEGORY_PANT));
+        $article->setSize($this->getReference(SizeFixtures::S));
         $manager->persist($article);
 
 

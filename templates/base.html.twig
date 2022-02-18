@@ -62,7 +62,7 @@
                     </div>
                     <div class="mobile-hidden">
                         {% if is_granted('ROLE_USER') %}
-                        {# <a href="{{path('profile')}}"></a> #}
+                        <a href="{{path('profile')}}"></a>
                         <a href="{{path('app_logout')}}">
                             <img class="icone" src="{{asset('images/icones/logout.png')}}" alt="Deconnexion">
                         </a>
@@ -122,12 +122,15 @@
             <li class="nav-item">
             <a class="nav-link" href="#">Contact</a>
             </li>
-            {# <li class="li-menu li-bt-burger">
-                <a class="btn-navbar" href="">Se connecter</a>
+            <li class="nav-item">
+            <a class="nav-link" href="{{path('profile')}}">Mon espace</a>
             </li>
-            <li class="li-menu li-bt-burger">
+            <li class="li-bt-burger nav-item">
+                <a class="btn-navbar" href="{{path('app_login')}}">Se connecter</a>
+            </li>
+            <li class="li-bt-burger nav-item">
                 <a class="btn-navbar" href="">Favoris</a>
-            </li> #}
+            </li> 
             
         </ul>
         </div>
