@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier mes informations{% endblock %}
+
+{% block body %}
+
+{# read and display all flash messages #}
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+    <div class="alert alert-{{ label }}" role="alert">    
+            {{ message }}   
+    </div>    
+    {% endfor %}
+{% endfor %}
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{path('profile')}}">Mes infos</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{path('edit-profile')}}">Modifier mon compte</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{path('favoris')}}">Mes favoris</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link">Mon panier</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link">Mes commandes</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+        {# {{dump(app.user)}} #}
+        {% if app.user.adresses|length == 0 %}
+            <p>Vous n'avez pas encore ajouter d'adresse dans votre espace. Merci de remplir les champs ci-dessous pour en ajouter une : </p>
+        {{form_start(addressForm)}}
+        <div class="row">
+            <div class="col-md-6">{{form_row(addressForm.name)}}</div>
+            <div class="col-md-6">{{form_row(addressForm.lastname)}}</div>
+            <div class="col-md-6">{{form_row(addressForm.company)}}</div>
+            <div class="col-md-6">{{form_row(addressForm.address)}}</div>
+            <div class="col-md-6">{{form_row(addressForm.zipcode)}}</div>
+            <div class="col-md-6">{{form_row(addressForm.city)}}</div>
+            <div class="col-md-6">{{form_row(addressForm.country)}}</div>
+            <div class="col-md-6">{{form_row(addressForm.phone)}}</div>
+        </div>
+        {{form_end(addressForm)}}
+            <br><hr><br>
+            <p>Souhaitez-vous modifier également les informations suivantes ? </p>
+
+        {% endif %}
+
+
+        {{form_start(form)}}
+        {{form_widget(form)}}
+        {{form_end(form)}}
+
+        {# {{dump(user)}} #}
+    {# </div> #}
+    
+
+{% endblock %}

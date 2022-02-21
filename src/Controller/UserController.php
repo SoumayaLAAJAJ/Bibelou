@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Adresse;
 use App\Form\UserType;
+use App\Form\AdresseType;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,15 +15,47 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserController extends AbstractController
 {
+    // enregistrement dans la BDD
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager){
+        $this->entityManager=$entityManager;
+    }
     /**
      * @Route("/profile", name="profile")
      */
-    public function index(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    public function index(): Response
     {
         $user = $this->getUser();
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
+        return $this->render('user/index.html.twig', [
+            'user' => $user,
+        ]);
+    }
 
+    /**
+     * @Route("/edit-profile", name="edit-profile")
+     */
+    public function editprofile(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    {
+        
+        $user = $this->getUser();
+        $form = $this->createForm(UserType::class, $user);
+        $adresse = new Adresse();
+        $addressForm = $this->createForm(AdresseType::class, $adresse);
+        $form->handleRequest($request);
+        
+        $addressForm->handleRequest($request);
+        // pour ajouter adresse :
+        if($addressForm->isSubmitted() && $addressForm->isValid()){
+            $adresse->setUser($user);
+            // dd($adresse);
+            $entityManager->persist($adresse);
+            $entityManager->flush();
+            $this->addFlash("success", "Votre adresse a bien été mise à jour. Veuillez sauvegarder les informations complètes");
+        }
+        
+        
+// pour modifier le mdp
         if($form->isSubmitted() && $form->isValid()){
             $plainPassword = $form->get("plainPassword")->getData();
             if(!is_null($plainPassword)){
@@ -34,45 +68,45 @@ class UserController extends AbstractController
                 )
             );
             }
-
             $entityManager->persist($user);
             $entityManager->flush();
+            
+            
+            
+            
 
+            
             $this->addFlash("success", "Vos informations ont bien été mises à jour");
             $this->redirectToRoute("profile");
         }
 
-        return $this->render('user/index.html.twig', [
+        return $this->render('user/edit-profile.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
+            'addressForm' => $addressForm->createView()
         ]);
+
+
     }
+    
 
-    /**
-     * @Route("/user/addarticle", name="addarticle", methods={ "POST", "GET" })
-     */
-    public function addArticle(Request $request, ArticleRepository $articleRepository, EntityManagerInterface $entityManagerInterface):Response
-    {
-        $article = $articleRepository->find($request->request->get("id"));
-        $user = $this->getUser();
-        $user->addArticle($article);
+        
 
-        $entityManagerInterface->persist($user);
-        $entityManagerInterface->flush();
-        return new Response("ok");
-    }
 
-        /**
-     * @Route("/user/removearticle/{id}", name="remove-article")
-     */
-    public function removeBook(int $id, ArticleRepository $articleRepository, EntityManagerInterface $entityManagerInterface): Response
-    {
-        $article = $articleRepository->find($id);
-        $user = $this->getUser();
-        $user->removeArticle($article);
-        $entityManagerInterface->persist($user);
-        $entityManagerInterface->flush();
 
-        return $this->redirectToRoute('profile');
-    }
+
+
+
+
+
+
+    
+    
+
+
+    
+
+
+    
+
 }

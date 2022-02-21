@@ -82,7 +82,7 @@
         var articleid = $(this).attr('data-articleid');
         var currentBt = $(this);
         $.ajax({
-            url: '/user/addarticle',
+            url: '/user/favoris/addarticle',
             type: 'POST',
             data: 'id='+articleid
         }).done(function(response){

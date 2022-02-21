@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes favoris{% endblock %}
+
+{% block body %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{path('profile')}}">Mes infos</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{path('edit-profile')}}">Modifier mon compte</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{path('favoris')}}">Mes favoris</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link">Mon panier</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link">Mes commandes</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+    {% if user.articles|length > 0 %}
+            {% for article in user.articles %}
+            <div class="col-12 col-md-3 col-xl-2 d-flex align-items-stretch mt-3">
+            <div class="card">
+                <img src="{{asset('images/articles/' ~ article.imageName)}}" alt="{{article.name}}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{article.name}}</h5>
+                    <a href="{{path('remove-article', {"id": article.id})}}" class="btn btn-dark w-100 align-self-end">Supprimer</a>
+                </div>
+            </div>
+            </div>
+            {% endfor %}
+    {% endif %}
+
+
+{% endblock %}
