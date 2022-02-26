@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -64,9 +65,11 @@ class AdminArticleController extends AbstractController
     public function edit(Request $request, Article $article, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ArticleType::class, $article);
+        // dd(count($article->getPhotos()));
         $form->handleRequest($request);
-
+        ;
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_article_index', [], Response::HTTP_SEE_OTHER);

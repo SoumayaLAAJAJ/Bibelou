@@ -3,8 +3,34 @@
     {{ form_row(form.description) }}
     {{ form_row(form.imageFile) }}
     {{ form_row(form.category) }}
+    {# {{ form_row(form.photos) }} #}
     {{ form_row(form.size) }}
     {{ form_row(form.price) }}
+
+
+    {# {% for photo in article.photos %}
+        {{ form_row(form.photo) }}
+        <input type="image" src="{{asset('images/articles/' ~ article.photo)}}" name="form-photo" alt="">
+    {% endfor %} #}
+
+
+   <button type="button"
+        class="add-another-collection-widget btn btn-primary mb-3"
+        data-list-selector="#photo-imageName-list">Ajouter des photos supplémentaires</button>
+
+    <section id="photo-imageName-list" class="d-flex"
+        data-prototype='{{ form_widget(form.photos.vars.prototype)|e }}<button  class="btn-remove-color">Supprimer</button>' #}
+       data-widget-tags="{{ '<div class="d-flex"></div>'|e }}"
+        data-widget-counter="{{ form.photos|length }}">
+    {% for photo in form.photos %}
+        <div class="d-flex">
+            
+            {{ form_widget(photo) }}
+            <a href="" class="btn-remove-photo">Supprimer</a>
+        </div>
+    {% endfor %}
+    </section> 
+
 
     <button type="button"
         class="add-another-collection-widget btn btn-primary mb-3"

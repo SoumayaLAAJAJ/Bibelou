@@ -78,6 +78,11 @@ class Article
      */
     private $price;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Photo::class, mappedBy="articles", cascade={"persist", "remove"})
+     */
+    private $photos;
+
 
 
     public function __construct()
@@ -85,6 +90,7 @@ class Article
         $this->Color = new ArrayCollection();
         $this->users = new ArrayCollection();
         $this->colors = new ArrayCollection();
+        $this->photos = new ArrayCollection();
     }
 
 
@@ -256,6 +262,36 @@ class Article
     public function setPrice(string $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Photo[]
+     */
+    public function getPhotos(): Collection
+    {
+        return $this->photos;
+    }
+
+    public function addPhoto(Photo $photo): self
+    {
+        if (!$this->photos->contains($photo)) {
+            $this->photos[] = $photo;
+            $photo->setArticles($this);
+        }
+
+        return $this;
+    }
+
+    public function removePhoto(Photo $photo): self
+    {
+        if ($this->photos->removeElement($photo)) {
+            // set the owning side to null (unless already changed)
+            if ($photo->getArticles() === $this) {
+                $photo->setArticles(null);
+            }
+        }
 
         return $this;
     }

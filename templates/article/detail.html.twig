@@ -8,7 +8,11 @@
 
 <section class="row mt-5">
     <div class="col-12 col-md-4 col-xl-3">
-        <img src="{{ asset('images/articles/' ~ article.imageName) }}" alt="" class="img-fluid">
+        <img src="{{ asset('images/articles/' ~ article.imageName) }}" alt="" class="img-fluid" id="photo-article">
+        {% for photo in article.photos %}
+    
+        <img src="{{ asset('images/photos/' ~ photo.imageName) }}" alt="" class="img-fluid thumbs" style="width:150px">
+        {% endfor %}
     </div>
     <div class="col-12 col-md-4 col-xl-4">
     <h2>{{ article.name }}</h2>
@@ -24,4 +28,13 @@
     <p class="m-5">{{ article.description|raw }}</p>
     </div>
 </section>
+{% endblock %}
+{% block javascripts %}
+<script>
+$(".thumbs").on("click", function(){
+    var currentPicture = $("#photo-article").attr("src");
+    $("#photo-article").attr("src", $(this).attr("src"));
+    $(this).attr("src", currentPicture);
+})
+</script>
 {% endblock %}

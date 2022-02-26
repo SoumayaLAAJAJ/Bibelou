@@ -41,7 +41,17 @@
             <tr>
                 <th>Image</th>
                 <td>{{ article.imageName }}</td>
-            </tr>
+            </tr> 
+            <tr>
+                <th>Photos supplémentaires</th>
+                <td>
+                {% for photo in article.photos %}
+                    <div>{{photo.imageName}}</div>
+
+                {% endfor %}
+                
+                </td>
+            </tr> 
             <tr>
                 <th>Mis à jour le </th>
                 <td>{{ article.updatedAt ? article.updatedAt|date('d-m-Y H:i:s') : '' }}</td>
