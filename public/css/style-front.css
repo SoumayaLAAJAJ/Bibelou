@@ -130,6 +130,10 @@ img.icone{
     cursor: pointer;
 }
 
+.img-icone{
+    max-width: 100px;
+}
+
 
 /* carroussel */
 .bg-carousel{

@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon panier{% endblock %}
+
+{% block body %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{path('profile')}}">Mes infos</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{path('edit-profile')}}">Modifier mon compte</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{path('favoris')}}">Mes favoris</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{path('cart')}}">Mon panier</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link">Mes commandes</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<h2>Récapitulatif de votre panier</h2>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+        <th scope="col">Article</th>
+        <th scope="col"></th>
+        <th scope="col">Quantité</th>
+        <th scope="col">Prix</th>
+        <th scope="col">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% set total = null %}
+    {% for article in cart %}
+    {# {{dump(article)}} #}
+        <tr>
+        <th>
+            <img src="{{asset('images/articles/' ~ article.article.imageName)}}" class="img-icone" alt="">
+        </th>
+        <td>{{ article.article.name }}</td>
+        <td>{{ article.quantity }}</td>
+        <td>{{ article.article.price }} €</td>
+        <td>{{ (article.article.price * article.quantity) }} €</td>
+        </tr>
+        {% set total = total + (article.article.price * article.quantity) %}
+    {% endfor %}
+    </tbody>
+</table>
+
+<div class="text-center">
+    Total de mon panier: {{ total }}€
+</div>
+
+<a href="" class='btn btn-success'>Valider mon panier</a>
+
+{% endblock %}

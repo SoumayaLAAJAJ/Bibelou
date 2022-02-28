@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Article;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * @method Article|null find($id, $lockMode = null, $lockVersion = null)
@@ -30,7 +31,10 @@ class ArticleRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
             ;
+
     }
+
+    
 
     // /**
     //  * @return Article[] Returns an array of Article objects
@@ -61,3 +65,5 @@ class ArticleRepository extends ServiceEntityRepository
     }
     */
 }
+
+
