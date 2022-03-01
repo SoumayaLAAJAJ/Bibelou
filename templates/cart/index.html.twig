@@ -31,39 +31,46 @@
 <h2>Récapitulatif de votre panier</h2>
 
 
+{% if cart|length > 0  %}
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Article</th>
+            <th scope="col"></th>
+            <th scope="col">Quantité</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Total</th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% set total = null %}
+        {% for article in cart %}
+        {# {{dump(article)}} #}
+            <tr>
+            <th>
+                <img src="{{asset('images/articles/' ~ article.article.imageName)}}" class="img-icone" alt="">
+            </th>
+            <td>{{ article.article.name }}</td>
+            <td>{{ article.quantity }}</td>
+            <td>{{ article.article.price }} €</td>
+            <td>{{ (article.article.price * article.quantity) }} €</td>
+            <td>
+            <a href="{{ path('delete-item', {'id' : article.article.id }) }}">
+                <img src="{{asset('images/icones/trash-can.png')}}" alt="Supprimer mon produit" class="icone"></td>
+            </a>
+            </tr>
+            {% set total = total + (article.article.price * article.quantity) %}
+        {% endfor %}
+        </tbody>
+    </table>
 
-<table class="table">
-    <thead>
-        <tr>
-        <th scope="col">Article</th>
-        <th scope="col"></th>
-        <th scope="col">Quantité</th>
-        <th scope="col">Prix</th>
-        <th scope="col">Total</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% set total = null %}
-    {% for article in cart %}
-    {# {{dump(article)}} #}
-        <tr>
-        <th>
-            <img src="{{asset('images/articles/' ~ article.article.imageName)}}" class="img-icone" alt="">
-        </th>
-        <td>{{ article.article.name }}</td>
-        <td>{{ article.quantity }}</td>
-        <td>{{ article.article.price }} €</td>
-        <td>{{ (article.article.price * article.quantity) }} €</td>
-        </tr>
-        {% set total = total + (article.article.price * article.quantity) %}
-    {% endfor %}
-    </tbody>
-</table>
+    <div class="text-center">
+        Total de mon panier: {{ total }}€
+    </div>
 
-<div class="text-center">
-    Total de mon panier: {{ total }}€
-</div>
-
-<a href="" class='btn btn-success'>Valider mon panier</a>
-
+    <a href="" class='btn btn-success'>Valider mon panier</a>
+{% else %}
+    <p>Votre panier est vide</p>
+{% endif %}
 {% endblock %}

@@ -2,6 +2,8 @@
 
 namespace App\Classe;
 
+use App\Entity\Article;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 
@@ -11,15 +13,16 @@ class Cart
 {
     private $session;
 
-    public function __construct(SessionInterface $session)
+    public function __construct(EntityManagerInterface $entityManager,SessionInterface $session)
     {
         $this->session = $session;
+        $this->entityManager = $entityManager;
     }
 
     public function add($id){
 
-        // Revoir cette partie car produit unique donc pas de quantité ++
         $cart = $this->session->get('cart', []);
+        // Revoir cette partie car produit unique donc pas de quantité ++
         if(!empty($cart[$id])){
             $cart[$id]++;
         }else{
@@ -40,6 +43,32 @@ class Cart
         return $this->session->remove('cart');
     }
 
+    public function delete($id)
+    {
+        $cart = $this->session->get('cart', []);
+        unset($cart[$id]);
+
+        return $this->session->set('cart', $cart);
+    }
+
+    public function getFull(){
+        $cartComplete = [];
+        if($this->get()){
+            foreach($this->get() as $id => $quantity){
+                $articleObject = $this->entityManager->getRepository(Article::class)->find($id);
+                // SECURITE
+                if(!$articleObject){
+                    $this->delete($id);
+                    continue;
+                }
+                $cartComplete[] = [
+                    'article' => $articleObject,
+                    'quantity'=> $quantity
+                ];
+            }
+        }
+        return $cartComplete;
+    }
 
 
 }
