@@ -69,7 +69,7 @@
         Total de mon panier: {{ total }}€
     </div>
 
-    <a href="" class='btn btn-success'>Valider mon panier</a>
+    <a href="{{path('order')}}" class='btn btn-success'>Valider mon panier</a>
 {% else %}
     <p>Votre panier est vide</p>
 {% endif %}

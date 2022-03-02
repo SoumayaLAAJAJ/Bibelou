@@ -64,6 +64,10 @@ class Adresse
      */
     private $phone;
 
+    public function __toString()
+    {
+        return $this->name.'[br]'.$this->address.'[br]'.$this->zipcode.'[br]'.$this->city;
+    }
 
     // public function __construct()
     // {

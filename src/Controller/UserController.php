@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Adresse;
+use App\Classe\Cart;
 use App\Form\UserType;
+use App\Entity\Adresse;
 use App\Form\AdresseType;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -35,7 +36,7 @@ class UserController extends AbstractController
     /**
      * @Route("/edit-profile", name="edit-profile")
      */
-    public function editprofile(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    public function editprofile(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, Cart $cart): Response
     {
         
         $user = $this->getUser();
@@ -51,7 +52,9 @@ class UserController extends AbstractController
             // dd($adresse);
             $entityManager->persist($adresse);
             $entityManager->flush();
+            
             $this->addFlash("success", "Votre adresse a bien été mise à jour. Veuillez sauvegarder les informations complètes");
+            
         }
         
         
@@ -79,7 +82,7 @@ class UserController extends AbstractController
             $this->addFlash("success", "Vos informations ont bien été mises à jour");
             $this->redirectToRoute("profile");
         }
-
+        
         return $this->render('user/edit-profile.html.twig', [
             'user' => $user,
             'form' => $form->createView(),

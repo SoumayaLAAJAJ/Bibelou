@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Valider ma commande{% endblock %}
+
+{% block body %}
+
+<h2>Je passe ma commande</h2>
+<p>Veuillez vérifier les informations avant de valider la commande.</p>
+
+<div class="row">
+    <div class="col-md-6">
+    
+        <p>Pour changer d'adresse, veuillez modifier votre adresse <a href="{{path('edit-profile')}}">sur cette page</a></p>
+        {% set formHtml %}
+            {{ form(form) }}
+        {% endset %}
+
+        {{ formHtml|replace({'[br]' : '<br>'})|raw }}
+
+
+    </div>
+
+    
+
+    <div class="col-md-6">
+    <p>Récapitulatif de ma commande</p>
+    
+        {% for article in cart %}
+        <div class="row">
+            <div class="col-md-2">
+                <img src="{{asset('images/articles/' ~ article.article.imageName)}}" class="img-icone mb-3" alt="">
+            </div>
+            <div class="col-md-8 my-auto">
+                {{ article.article.name }}
+            </div>
+            <div class="col-md-2 my-auto">
+                {{ article.article.price }}€
+            </div>
+        </div>
+
+        {% endfor %}
+    
+    </div>
+</div>
+
+{% endblock %}
