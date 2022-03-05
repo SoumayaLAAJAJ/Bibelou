@@ -3,6 +3,7 @@
 namespace App\Classe;
 
 use App\Entity\Article;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -23,11 +24,13 @@ class Cart
 
         $cart = $this->session->get('cart', []);
         // Revoir cette partie car produit unique donc pas de quantité ++
-        if(!empty($cart[$id])){
-            $cart[$id]++;
-        }else{
+        if(empty($cart[$id])){
             $cart[$id] = 1;
         }
+        // $articleInCart = new ArticleInCart();
+        // $articleInCart->setArticle($id);
+        // $articleInCart->setDate(new DateTime());
+        // Puis injecter entityManager dans la méthode add pour pouvoir faire le persist et flush ci dessous
 
 
         $this->session->set('cart', $cart);

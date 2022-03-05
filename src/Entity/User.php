@@ -173,6 +173,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
+
     public function getFirstname(): ?string
     {
         return $this->firstname;

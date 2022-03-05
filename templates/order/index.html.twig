@@ -12,7 +12,8 @@
     
         <p>Pour changer d'adresse, veuillez modifier votre adresse <a href="{{path('edit-profile')}}">sur cette page</a></p>
         {% set formHtml %}
-            {{ form(form) }}
+            {{ form_start(form, {action:path('order_recap')}) }}
+            {{ form_end(form) }}
         {% endset %}
 
         {{ formHtml|replace({'[br]' : '<br>'})|raw }}
@@ -24,7 +25,7 @@
 
     <div class="col-md-6">
     <p>Récapitulatif de ma commande</p>
-    
+
         {% for article in cart %}
         <div class="row">
             <div class="col-md-2">
@@ -34,9 +35,10 @@
                 {{ article.article.name }}
             </div>
             <div class="col-md-2 my-auto">
-                {{ article.article.price }}€
+                {{ article.article.price|number_format(2, ',', '.') }} €
             </div>
         </div>
+
 
         {% endfor %}
     
