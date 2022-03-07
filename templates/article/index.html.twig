@@ -29,7 +29,7 @@
         </nav>
     {% endif %}    
         {% if articles|length > 0 %}
-        <div class="row row-book mt-5">
+        <div class="row row-book mt-5 row-article">
         {% for article in articles %}
             {# <div class="col-6 col-md-4 col-xl-3">
                 <a href="#">
@@ -46,11 +46,11 @@
                     <p class="card-text w-100">{{article.description|raw|u.truncate(26, '...')}}</p>
                 </div>
                 <div class="d-flex flex-wrap">
-                    <a href="{{ path('add-to-cart', {'id': article.id}) }}" class="btn btn-primary align-self-end mt-3">Ajouter au panier</a>
+                            <a href="{{ path('add-to-cart', {'id': article.id}) }}" class="btn btn-primary align-self-end mt-3 bt-cart">Ajouter au panier</a>
                     
                     {% if is_granted('ROLE_USER') %}
                         {% if article not in app.user.articles %}
-                        <a href="#" class="btn btn-danger align-self-end  mt-3 bt-list" data-articleid={{ article.id }}>Ajouter aux favoris
+                            <a href="#" class="btn btn-danger align-self-end  mt-3 bt-list" data-articleid={{ article.id }}>Ajouter aux favoris
                             <img src="{{asset('images/icones/love.png')}}" class="icone" alt="">
                             {# <i class="fab fa-gratipay bt-list" title="Ajouter à ma liste" data-articleid="{{ article.id }}"></i> #}
                         </a>
@@ -90,6 +90,14 @@
             $(currentBt).fadeOut();
         });
     });
+    
+    $(".bt-cart").on("click", function(event){
+        //event.preventDefault();        
+            $(this).hide();
+        ;
+    });
+    
+    
     </script>
     {% endblock %}
 

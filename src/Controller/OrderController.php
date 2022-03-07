@@ -70,7 +70,7 @@ class OrderController extends AbstractController
             // Enregistrer ma commande via Order()
             $order = new Order();
             $reference = $date->format('dmY').'-'.uniqid();
-            
+
             $order->setReference($reference);
             $order->setUser($this->getUser());
             $order->setCreatedAt($date);
@@ -99,8 +99,10 @@ class OrderController extends AbstractController
                 
             }
 
+            // dd($order);
 
-            // $this->entityManager->flush();
+
+            $this->entityManager->flush();
 
             
             

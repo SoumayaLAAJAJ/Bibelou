@@ -83,6 +83,11 @@ class Article
      */
     private $photos;
 
+    /**
+     * @ORM\OneToOne(targetEntity=ArticleInCart::class, mappedBy="article", cascade={"persist", "remove"})
+     */
+    private $articleInCart;
+
 
 
     public function __construct()
@@ -292,6 +297,28 @@ class Article
                 $photo->setArticles(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getArticleInCart(): ?ArticleInCart
+    {
+        return $this->articleInCart;
+    }
+
+    public function setArticleInCart(?ArticleInCart $articleInCart): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($articleInCart === null && $this->articleInCart !== null) {
+            $this->articleInCart->setArticle(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($articleInCart !== null && $articleInCart->getArticle() !== $this) {
+            $articleInCart->setArticle($this);
+        }
+
+        $this->articleInCart = $articleInCart;
 
         return $this;
     }

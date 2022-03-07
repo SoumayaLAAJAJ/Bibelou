@@ -34,6 +34,16 @@ class ArticleRepository extends ServiceEntityRepository
 
     }
 
+    public function findDisponible(){
+        return $this->createQueryBuilder('a')
+        ->leftJoin("a.articleInCart", "ac")
+        ->where("ac.article is null")
+        ->getQuery()
+        ->getResult()
+        ;
+
+    }
+
     
 
     // /**
