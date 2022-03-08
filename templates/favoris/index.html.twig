@@ -18,10 +18,10 @@
                 <a class="nav-link" href="{{path('favoris')}}">Mes favoris</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link">Mon panier</a>
+                <a class="nav-link" href="{{path('cart')}}">Mon panier</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link">Mes commandes</a>
+                <a class="nav-link" href="{{path('mes_commandes')}}">Mes commandes</a>
                 </li>
             </ul>
         </div>
@@ -31,6 +31,7 @@
 
     {% if user.articles|length > 0 %}
             {% for article in user.articles %}
+    {# {{dump(article)}} #}
             <div class="col-12 col-md-3 col-xl-2 d-flex align-items-stretch mt-3">
             <div class="card">
                 <img src="{{asset('images/articles/' ~ article.imageName)}}" alt="{{article.name}}" class="card-img-top">

@@ -2,13 +2,14 @@
 
 namespace App\Controller;
 
+use App\Classe\Cart;
 use App\Entity\Order;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class OrderValidateController extends AbstractController
+class OrderSuccessController extends AbstractController
 {
     private $entityManager;
     public function __construct(EntityManagerInterface $entityManager)
@@ -19,7 +20,7 @@ class OrderValidateController extends AbstractController
     /**
      * @Route("/commande/merci/{stripeSessionId}", name="order_validate")
      */
-    public function index($stripeSessionId): Response
+    public function index($stripeSessionId, Cart $cart): Response
     {
 
         $order = $this->entityManager->getRepository(Order::class)->findOneByStripeSessionId($stripeSessionId);
@@ -29,6 +30,8 @@ class OrderValidateController extends AbstractController
         }
 
         if(!$order->getIsPaid()){
+            // Vider la session "cart"
+            $cart->remove();
             // Modification du statut isPaid de la commande en passant le statut à 1
             $order->setIsPaid(1);
             $this->entityManager->flush();
@@ -44,7 +47,7 @@ class OrderValidateController extends AbstractController
 
         // dd($order);
 
-        return $this->render('order_validate/index.html.twig', [
+        return $this->render('order_success/index.html.twig', [
             'order' => $order
         ]);
     }

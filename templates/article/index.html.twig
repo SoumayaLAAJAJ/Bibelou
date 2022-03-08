@@ -27,7 +27,9 @@
             </div>
         </div>
         </nav>
-    {% endif %}    
+    {% endif %}  
+
+    <div class="container">
         {% if articles|length > 0 %}
         <div class="row row-book mt-5 row-article">
         {% for article in articles %}
@@ -74,6 +76,7 @@
 
 
 {% endif %}
+</div>
 
     {% block javascripts %}
     <script>

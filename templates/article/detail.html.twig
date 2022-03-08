@@ -5,6 +5,7 @@
 {% block body %}
 {# {{ dump(article) }} #}
 
+<div class="container">
 
 <section class="row mt-5">
     <div class="col-12 col-md-4 col-xl-3">
@@ -28,6 +29,7 @@
     <p class="m-5">{{ article.description|raw }}</p>
     </div>
 </section>
+</div>
 {% endblock %}
 {% block javascripts %}
 <script>

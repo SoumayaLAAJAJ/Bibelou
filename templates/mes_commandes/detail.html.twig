@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ma Commande{% endblock %}
+
+{% block body %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{path('profile')}}">Mes infos</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{path('edit-profile')}}">Modifier mon compte</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{path('favoris')}}">Mes favoris</a>
+                </li>
+                <li class="nav-item">
+                <a href="{{path('cart')}}" class="nav-link">Mon panier</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{path('mes_commandes')}}">Mes commandes</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{# {{ dump(order) }} #}
+<p>Commande passée le : {{ order.createdAt|date('d/m/Y') }}</p>
+<p>Référence de ma commande : {{ order.reference }}</p>
+<p>Transporteur choisi : {{order.carrierName}}</p>
+
+<p>Détails : </p>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Produit</th>
+        <th scope="col">Quantité</th>
+        <th scope="col">Prix unitaire</th>
+        {# <th scope="col">Total</th> #}
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for article in order.orderDetails %}
+    {# {{ dump(article) }} #}
+        <tr>
+            <td>{{ article.article }}</td>
+            <td>{{ article.quantity }}</td>
+            <td>{{ article.price|number_format(2,',','.') }} €</td>
+            {# <td>{{ article.total|number_format(2,',','.') }} €</td> #}
+        </tr>
+
+    {% endfor %}
+    </tbody>
+</table>
+
+<div class="text-end">
+    <p>Sous-total : {{ order.getTotal|number_format(2,',','.') }} €</p>
+    <p>Livraison : {{ order.carrierPrice|number_format(2,',','.') }} €</p>
+    <p>Total: {{ (order.getTotal + order.carrierPrice)|number_format(2,',','.') }} €</p>
+</div>
+
+{% endblock %}

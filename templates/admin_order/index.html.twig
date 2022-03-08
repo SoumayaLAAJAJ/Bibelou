@@ -26,6 +26,7 @@
                 <td>{{ order.carrierPrice }}</td>
                 <td>{{ order.delivery }}</td>
                 <td>{{ order.isPaid ? 'Yes' : 'No' }}</td>
+                
                 <td>
                     <a href="{{ path('admin_order_show', {'id': order.id}) }}" class="btn btn-primary">Voir le rendu</a>
                     <a href="{{ path('admin_order_edit', {'id': order.id}) }}" class="btn btn-success">Modifier</a>
