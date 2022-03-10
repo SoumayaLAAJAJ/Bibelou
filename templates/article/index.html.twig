@@ -48,7 +48,7 @@
                     <p class="card-text w-100">{{article.description|raw|u.truncate(26, '...')}}</p>
                 </div>
                 <div class="d-flex flex-wrap">
-                            <a href="{{ path('add-to-cart', {'id': article.id}) }}" class="btn btn-primary align-self-end mt-3 bt-cart">Ajouter au panier</a>
+                        <a href="{{ path('add-to-cart', {'id': article.id}) }}" class="btn btn-primary align-self-end mt-3 bt-cart">Ajouter au panier</a>
                     
                     {% if is_granted('ROLE_USER') %}
                         {% if article not in app.user.articles %}

@@ -38,6 +38,8 @@
                     <th scope="col">Référence :</th>
                     <th scope="col">Article.s : </th>
                     <th scope="col">Total : </th>
+                    <th scope="col">Statut :</th>
+                    <th scope="col">Livraison OK :</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -48,6 +50,8 @@
                     <td>{{order.reference}}</td>
                     <td>{{order.orderDetails|length}}</td>
                     <td>{{(order.carrierPrice + order.getTotal)|number_format(2, ',', '.')}} €</td>
+                    <td>{{order.state ? 'Préparation en cours' : 'Livraison en cours'}}</td>
+                    <td>{{order.isDelivered ? 'Oui' : 'Non'}}</td>
                     <td class="text-end"> <a href="{{path('detail_commande', {'reference' : order.reference})}}">Voir ma commande</a></td>
                 </tr>
                 {% endfor %}

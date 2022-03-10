@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Form\CodeColorType;
 use Symfony\Component\Form\AbstractType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -30,6 +31,7 @@ class ArticleType extends AbstractType
             ->add("colors", CollectionType::class, ['label'=> false,'entry_type' => CodeColorType::class, "allow_add"=>true, "allow_delete"=>true, "by_reference"=>false ])
             ->add('photos', CollectionType::class, ['label'=>"Images supplémentaires", 'entry_type' => PhotoSuppType::class, "allow_add"=>true, "allow_delete"=>true, "by_reference"=>false] )
             ->add('size')
+            ->add('isActu', CheckboxType::class, ['label'=>'Mis en avant'])
         ;
     }
 

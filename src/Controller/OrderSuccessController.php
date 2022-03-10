@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Classe\Cart;
+use App\Classe\Mail;
 use App\Entity\Order;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,6 +37,12 @@ class OrderSuccessController extends AbstractController
             $order->setIsPaid(1);
             $this->entityManager->flush();
             // Envoyer un email au client pour lui confirmer sa commande
+            $mail = new Mail();
+            $content = "Bonjour ".$order->getUser()->getName()."<br>Nous vous confirmons que votre commande a bien été prise en compte. Vous trouverez les détails de celle-ci ainsi que l'état de son suivi dans votre espace membre. Merci d'avoir commandé chez Bibelou, à très vite !";
+            $order_id = $order->getReference();
+            $order_date = $order->getCreatedAt();
+            $total_price = $order->getTotal() + $order->getCarrierPrice();
+            $mail->send($order->getUser()->getEmail(), $order->getUser()->getName(), "Confirmation de commande", $content, $order_id, $order_date,$total_price);
 
         }
 

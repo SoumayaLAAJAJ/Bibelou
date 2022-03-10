@@ -88,6 +88,11 @@ class Article
      */
     private $articleInCart;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isActu;
+
 
 
     public function __construct()
@@ -319,6 +324,18 @@ class Article
         }
 
         $this->articleInCart = $articleInCart;
+
+        return $this;
+    }
+
+    public function getIsActu(): ?bool
+    {
+        return $this->isActu;
+    }
+
+    public function setIsActu(bool $isActu): self
+    {
+        $this->isActu = $isActu;
 
         return $this;
     }

@@ -16,10 +16,9 @@ class FavorisController extends AbstractController
      */
     public function index(Request $request, ArticleRepository $articleRepository): Response
     {
-        $article = $articleRepository->find($request->request->get("id"));
+        
         $user = $this->getUser();
         return $this->render('favoris/index.html.twig', [
-            'article' => $article,
             'user' => $user
         ]);
     }

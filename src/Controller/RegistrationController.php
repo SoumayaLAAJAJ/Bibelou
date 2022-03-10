@@ -31,8 +31,11 @@ class RegistrationController extends AbstractController
      */
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
+        
         $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+
+        $form = $this->createForm(RegistrationFormType::class, $user); 
+    
         $form->handleRequest($request);
 
         // On ajoute le ROLE_USER à l'utilisateur dont on gère l'inscription 
@@ -46,7 +49,7 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
+//  return new Response("coucou");
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -66,10 +69,14 @@ class RegistrationController extends AbstractController
             //     $authenticator,
             //     $request
             // );
+
+            
         }
+        // Le problème viendrait de là !!! 
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+            
         ]);
     }
 

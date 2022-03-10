@@ -12,8 +12,10 @@
                 <th>Passée le</th>
                 <th>Nom du transporteur</th>
                 <th>Prix de la livraison</th>
-                <th>Adresse de livraison</th>
+                {# <th>Adresse de livraison</th> #}
                 <th>Payé ?</th>
+                <th>Statut</th>
+                <th>Livraison OK ? </th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -24,8 +26,10 @@
                 <td>{{ order.createdAt ? order.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ order.carrierName }}</td>
                 <td>{{ order.carrierPrice }}</td>
-                <td>{{ order.delivery }}</td>
+                {# <td>{{ order.delivery }}</td> #}
                 <td>{{ order.isPaid ? 'Yes' : 'No' }}</td>
+                <td>{{ order.isDelivered ? 'Yes' : 'No' }}</td>
+                <td>{{ order.state }}</td>
                 
                 <td>
                     <a href="{{ path('admin_order_show', {'id': order.id}) }}" class="btn btn-primary">Voir le rendu</a>

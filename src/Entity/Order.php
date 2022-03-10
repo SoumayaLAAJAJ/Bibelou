@@ -67,6 +67,16 @@ class Order
      */
     private $stripeSessionId;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $state;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isDelivered;
+
     public function __construct()
     {
         $this->orderDetails = new ArrayCollection();
@@ -210,6 +220,30 @@ class Order
     public function setStripeSessionId(?string $stripeSessionId): self
     {
         $this->stripeSessionId = $stripeSessionId;
+
+        return $this;
+    }
+
+    public function getState(): ?int
+    {
+        return $this->state;
+    }
+
+    public function setState(int $state): self
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    public function getIsDelivered(): ?bool
+    {
+        return $this->isDelivered;
+    }
+
+    public function setIsDelivered(?bool $isDelivered): self
+    {
+        $this->isDelivered = $isDelivered;
 
         return $this;
     }

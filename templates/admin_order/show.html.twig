@@ -32,6 +32,14 @@
                 <th>IsPaid</th>
                 <td>{{ order.isPaid ? 'Yes' : 'No' }}</td>
             </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{{ order.state ? 'En préparation' : 'En livraison' }}</td>
+            </tr>
+            <tr>
+                <th>IsDelivered</th>
+                <td>{{ order.isDelivered ? 'Yes' : 'No' }}</td>
+            </tr>
         </tbody>
     </table>
 

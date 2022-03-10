@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Order;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,8 +17,10 @@ class Order1Type extends AbstractType
             ->add('createdAt')
             ->add('carrierName')
             ->add('carrierPrice')
-            ->add('delivery')
+            ->remove('delivery')
             ->add('isPaid')
+            ->add('state', ChoiceType::class, ['choices'=>['Préparation en cours' => 0, 'Livraison en cours' => 1]])
+            ->add('isDelivered')
             ->add('user')
             
         ;

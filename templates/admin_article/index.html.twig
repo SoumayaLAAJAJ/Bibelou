@@ -14,6 +14,7 @@
                 <th>Nom</th>
                 {# <th>Description</th> #}
                 <th>Mis à jour le</th>
+                <th>Actualités ?</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -27,6 +28,7 @@
                 <td>{{ article.name }}</td>
                 {# <td>{{ article.description }}</td> #}
                 <td>{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ article.isActu ? 'Yes' : 'No' }}</td>
                 <td class="text-end">
                     <a href="{{ path('admin_article_show', {'id': article.id}) }}" class="btn btn-primary">Voir le rendu</a>
                     <a href="{{ path('admin_article_edit', {'id': article.id}) }}" class="btn btn-success">Modifier</a>
