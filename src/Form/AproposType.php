@@ -18,7 +18,7 @@ class AproposType extends AbstractType
             ->add('title', TextType::class, ['label'=>'Titre'] )
             ->remove('imageName')
             ->add('imageFile', FileType::class, ['label'=>'Image'])
-            ->add('updatedAt', DateTimeType::class, ['widget'=>'single_text', 'label'=>'Mis à jour le' ])
+            // ->add('updatedAt', DateTimeType::class, ['widget'=>'single_text', 'label'=>'Mis à jour le' ])
             ->add('description')
         ;
     }

@@ -59,12 +59,12 @@
                         <img class="icone" src="{{asset('images/icones/cart.png')}}" alt="Mon panier">
                         </a>
                     </div>
-                    <div class="mobile-hidden">
+                    <div class="mobile-hidden ms-5">
                         <a href="{{path('favoris')}}">
                         <img  class="icone" src="{{asset('images/icones/love.png')}}" alt="Mes favoris">
                         </a>
                     </div>
-                    <div class="mobile-hidden">
+                    <div class="mobile-hidden ms-5">
                         {% if is_granted('ROLE_USER') %}
                         <a href="{{path('profile')}}"></a>
                         <a href="{{path('app_logout')}}">
@@ -110,21 +110,8 @@
             <li class="nav-item">
             <a class="nav-link" href="{{ path('article') }}">Collections</a>
             </li>
-            {# <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="{{ path('article') }}" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Collections
-            </a> #}
-            {# <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" >
-                <li><a class="dropdown-item" href="#">Hauts et vestes</a></li>
-                <li><a class="dropdown-item" href="#">Pantalons et shorts</a></li>
-                <li><a class="dropdown-item" href="#">Jupes et robes</a></li>
-                <li><a class="dropdown-item" href="#">Accessoires</a></li>
-                <li><a class="dropdown-item" href="#">Chaussettes et chaussures</a></li>
-            </ul> #}
-                
-            </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="{{path('contact')}}">Contact</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="{{path('profile')}}">Mon espace</a>

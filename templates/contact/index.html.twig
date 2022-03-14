@@ -1,20 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
+{% block title %}Nous contacter{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+{% for message in app.flashes('notice') %}
+    <div class="alert alert-info">{{ message }}</div>
+{% endfor %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/projet_v2/src/Controller/ContactController.php'|file_link(0) }}">src/Controller/ContactController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/projet_v2/templates/contact/index.html.twig'|file_link(0) }}">templates/contact/index.html.twig</a></code></li>
-    </ul>
+<div class="container">
+    <div class="row my-5">
+        <div class="col-md-8">
+            <h3 class="mb-5">Nous contacter</h3>
+            <p>Vous pouvez nous contacter du lundi au vendredi de 16h à 20h et le week-end de 9h à 20h par téléphone au 01.43.25.80.73 ou envoyer un mail à boutique.bibelou@gmail.com.</p>
+            <p>Vous pouvez également nous envoyer un message via le formulaire de contact. Le délai de réponse est de 72h.</p>
+        </div>
+        <div class="col-md-4">{{ form(form) }}</div>
+    </div>
 </div>
+
 {% endblock %}

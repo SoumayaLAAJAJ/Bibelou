@@ -120,25 +120,37 @@ img.icone{
 
 .mobile-hidden{
     display: none;
-    margin-left: 3rem;
+    /* margin-left: 3rem; */
 }
 
 
 .card img:hover{
     -webkit-box-shadow: 2px 2px 5px 3px rgba(0,0,0,0.4);
     box-shadow: 2px 2px 5px 3px rgba(0,0,0,0.4);
-    cursor: pointer;
+    
 }
 
 .img-icone{
     max-width: 100px;
 }
 
+.img-cat{
+    max-width: 130px;
+
+}
+
 
 
 /* carroussel */
 .bg-carousel{
+    background-color: #ffbb5c48; 
+}
+
+
+.bg-color{
     background-color: #ffbb5c48;
+    padding: 150px;
+
 }
 
 /* X-Small devices (portrait phones, less than 576px)
@@ -151,6 +163,7 @@ img.icone{
     }
     .mobile-hidden{
         display: none;
+
     }
 
 }
@@ -166,6 +179,9 @@ img.icone{
     }
     .li-bt-burger{
         display: none;
+    }
+    span{
+        display: block;
     }
 } 
 
