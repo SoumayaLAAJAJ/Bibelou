@@ -1,6 +1,9 @@
 /* import des typos */
 @import url('https://fonts.googleapis.com/css2?family=Chewy&family=Mukta&family=Roboto:wght@300&display=swap');
 
+
+
+
 /* *{
     padding: 0;
     margin: 0;
@@ -141,6 +144,8 @@ img.icone{
 
 
 
+
+
 /* carroussel */
 .bg-carousel{
     background-color: #ffbb5c48; 
@@ -149,8 +154,12 @@ img.icone{
 
 .bg-color{
     background-color: #ffbb5c48;
-    padding: 150px;
+    padding: 90px;
 
+}
+
+.bg-footer{
+    background-color: #ff7f50;
 }
 
 /* X-Small devices (portrait phones, less than 576px)

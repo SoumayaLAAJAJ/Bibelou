@@ -4,7 +4,10 @@ namespace App\Controller;
 
 use App\Classe\Mail;
 use App\Entity\Article;
+use App\Entity\SecondCarousel;
 use App\Repository\CarouselRepository;
+use App\Repository\CategoryRepository;
+use App\Repository\SecondCarouselRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,18 +25,24 @@ class HomeController extends AbstractController
      * @Route("/")
      * @Route("/home", name="home")
      */
-    public function index(CarouselRepository $carouselRepository): Response
+    public function index(CarouselRepository $carouselRepository, SecondCarouselRepository $secondCarouselRepository): Response
     {
         // $mail = new Mail();
         // $mail->send('boutique.bibelou@gmail.com', 'Soum Ljj', 'Mail test', 'Bonjour - test');
 
         $articles = $this->entityManager->getRepository(Article::class)->findByIsActu(1);
+
+        $articlesAll = $this->entityManager->getRepository(Article::class)->findAll();
         // dd($articles);
+
+        // $categories = $categoryRepository->findAll();
 
 
         return $this->render('home/index.html.twig', [
             'carousels' => $carouselRepository->findAll(),
+            'secondCarousels' => $secondCarouselRepository->findAll(),
             'articles' =>$articles,
+            'articlesAll' => $articlesAll
         ]);
 
     }

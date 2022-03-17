@@ -60,7 +60,7 @@ class ArticleController extends AbstractController
     }
 
 
-        /**
+    /**
      * @Route("/article-detail/{id}", name="article-detail")
      */
     public function detail(int $id, ArticleRepository $articleRepository): Response{

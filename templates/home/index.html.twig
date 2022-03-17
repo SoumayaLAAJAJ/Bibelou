@@ -4,7 +4,7 @@
 
 {% block body %}
 
-
+{# CAROUSSEL #}
 <div id="carouselExampleControls" class="carousel slide bg-carousel" data-bs-ride="carousel">
     <div class="carousel-inner">
     {% for carousel in carousels %}
@@ -36,11 +36,13 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
+{# fin caroussel #}
 
 
+{# NOUVEAUTES #}
         {# {% if category.articles|length > 0 %} #}
     <div class="container">
-    <h3 class="mt-5 text-center">Découvrez nos nouveautés</h3>
+        <h3 class="mt-5 text-center">Découvrez nos nouveautés</h3>
         <div class="row d-flex justify-content-center">
         
             {% for article in articles %}
@@ -51,7 +53,7 @@
                 <div class="card-body d-flex flex-wrap">
                     <div>
                         <h5 class="card-title d-block">{{article.name}}</h5>
-                        <p class="card-text w-100">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        
                     </div>
                     <a href="{{ path('add-to-cart', {'id': article.id}) }}" class="btn btn-primary align-self-end mt-3 bt-cart">Ajouter au panier</a>
                 </div>
@@ -59,40 +61,179 @@
     </div>
             {% endfor %}
 
-        <div class="container mb-5">
+{# fin nouveautés #}
 
+
+{# CATEGORIES ICONES #}
+        <div class="container mb-5">
+            
             <div class="hover14 column bg-color d-flex justify-content-around flex-wrap text-center">
                 <div class="mb-5">
-                    <figure><img src="{{ asset('images/icones/pants.png') }}" class="img-cat mb-2"></figure>
+                    <a href="{{ path('category-detail', {id: 47}) }}">
+                        <figure><img src="{{ asset('images/icones/pants.png') }}" class="img-cat mb-2"></figure>
+                    </a>
                     <span class="mobile-hidden">Pantalons et shorts</span>
                 </div>
+            
                 <div>
-                    <figure><img src="{{ asset('images/icones/skirt.png') }}" class="img-cat mb-2"></figure>
+                    <a href="{{ path('category-detail', {id: 48}) }}">
+                        <figure><img src="{{ asset('images/icones/skirt.png') }}" class="img-cat mb-2"></figure>
+                    </a>
                     <span class="mobile-hidden">Robes et jupes</span>
                 </div>
                 <div>
-                    <figure><img src="{{ asset('images/icones/t-shirt.png') }}" class="img-cat mb-1"></figure>
+                    <a href="{{ path('category-detail', {id: 46}) }}">
+                        <figure><img src="{{ asset('images/icones/t-shirt.png') }}" class="img-cat mb-1"></figure>
+                    </a>
                     <span class="mobile-hidden">Hauts et vestes</span>
                 </div>
                 <div>
-                    <figure><img src="{{ asset('images/icones/beanie.png') }}" class="img-cat mb-1"></figure>
+                    <a href="{{ path('category-detail', {id: 49}) }}">
+                        <figure><img src="{{ asset('images/icones/beanie.png') }}" class="img-cat mb-1"></figure>
+                    </a>
                     <span class="mobile-hidden">Accessoires</span>
                 </div>
-                {# <div>
-                    <figure><img src="{{ asset('images/icones/clothing.png') }}" class="img-cat mb-1"></figure>
-                    <span>Tous les produits</span>
-                </div> #}
+                
             </div>
-
         </div>
+{# Fin catégories icones #}
+
+
+{# AFFICHAGE PRODUITS PAR 6 #}
+    <h2 class="text-center mt-4">Voir plus de produits</h2>
+    <div class="container d-flex justify-content-center">
+        {% if articles|length > 0 %}
+        <div class="row d-flex  col-md-9">
+        {% for article in articlesAll %}
+            <div class="card m-3 d-flex justify-content-around" style="width: 18rem;">
+            <a href="{{ path('article-detail', {'id': article.id}) }}">
+            <img src="{{ asset('images/articles/' ~ article.imageName) }}" class="card-img-top"  alt="...">
+            </a>
+            <div class="card-body d-flex flex-wrap">
+                <div>
+                    <h5 class="card-title d-block">{{article.name}}</h5>
+                    {# <p class="card-text w-100">{{article.description|raw|u.truncate(26, '...')}}</p> #}
+                </div>
+                <div class="d-flex flex-wrap">
+                        <a href="{{ path('add-to-cart', {'id': article.id}) }}" class="btn btn-primary align-self-end mt-3 bt-cart">Ajouter au panier</a>
+                    
+                    {% if is_granted('ROLE_USER') %}
+                        {% if article not in app.user.articles %}
+                            <a href="#" class="btn btn-danger align-self-end  mt-3 bt-list" data-articleid={{ article.id }}>Ajouter aux favoris
+                            <img src="{{asset('images/icones/love.png')}}" class="icone" alt="">
+                        </a>
+                        {% endif %}
+                    {% endif %}
+                    {# {{dump(app.user)}} #}
+                
+                </div>
+
+            </div>
+            </div>
+        {% endfor %}
+
+        
+        </div>
+        
+        {% else %}
+        <p>Il n'y a pas d'articles dans la BDD</p>
+
+
+
+
+        {% endif %}
+        
+    </div>
+
+    <a href="{{ path('article') }}" class="btn btn-success align-self-center mb-5">Afficher plus de produits</a>
+
+{# Fin affichage de produits par 6 #}
+
+{# EN SAVOIR PLUS #}
+<h2 class="text-start mt-5">En savoir plus sur Bibelou</h2>
+<div class="container mb-5">
+            
+            <div class="hover14 column bg-color d-flex justify-content-around flex-wrap text-center">
+                <div class="mb-5">
+                    <figure><img src="{{ asset('images/icones/delivery-truck.png') }}" class="img-cat mb-2"></figure>
+                    <span>Livraison à domicile <br> ou en relais.</span>
+                </div>
+            
+                <div class="mb-5">
+                    <figure><img src="{{ asset('images/icones/cadenas.png') }}" class="img-cat mb-2"></figure>
+                    <span>Paiement 100% <br> sécurisé par CB et Paypal</span>
+                </div>
+                <div class="mb-5">
+                    <figure><img src="{{ asset('images/icones/la-fleche.png') }}" class="img-cat mb-1"></figure>
+                    <span>Produits éco-responsables<br> et de qualité, créés sans<br> déchets.</span>
+                </div>
+                <div class="mb-5">
+                        <figure><img src="{{ asset('images/icones/time.png') }}" class="img-cat mb-1"></figure>
+                    <span>Service client disponible <br>par téléphone de 16h à 20h du <br> lundi au vendredi et de <br>9h à 20h le week-end, et 24/24h <br>par mail ou via le formulaire de<br> contact.</span>
+                </div>
+                
+            </div>
+</div>
+
+
+{# Fin en savoir plus #}
+
+{# DEUXIEME CAROUSSEL #}
+<h2 class="text-start mt-5">Processus de production</h2>
+<div class="container mb-5">
+    <div class="row">   
+        <div id="carouselExampleSlidesOnly" class="carousel slide col-md-8" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+            <img src="{{asset('images/carousel/atelier1.jpg')}}" class="d-block w-75" alt="...">
+            </div>
+            <div class="carousel-item">
+            <img src="{{asset('images/carousel/atelier2.jpg')}}" class="d-block w-75" alt="...">
+            </div>
+            <div class="carousel-item">
+            <img src="{{asset('images/carousel/atelier3.jpg')}}" class="d-block w-75" alt="...">
+            </div>
+        </div>
+        </div>
+    <p class="col-md-4 align-self-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam iste maxime corrupti. Illum quibusdam et aspernatur! Quis iusto, nemo labore ex nostrum voluptatibus harum ut ad culpa suscipit, commodi ea? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores repellendus sequi numquam nesciunt itaque. A est quibusdam mollitia accusantium odio illum aliquam tempora? Facere asperiores autem quae. Deleniti, at odio.</p>
+    </div>
+</div>
+{# fin deuxième caroussel #}
+
+</div>
+</div>
 
 
     
 
+        {% block javascripts %}
+    <script>
+    $(".bt-list").on("click", function(event){
+        event.preventDefault();
+        var articleid = $(this).attr('data-articleid');
+        var currentBt = $(this);
+        $.ajax({
+            url: '/user/favoris/addarticle',
+            type: 'POST',
+            data: 'id='+articleid
+        }).done(function(response){
+            //alert(response);
+            $(currentBt).fadeOut();
+        });
+    });
+    
+    $(".bt-cart").on("click", function(event){
+        //event.preventDefault();        
+            $(this).hide();
+        ;
+    });
+    
+    
+    </script>
+    {% endblock %}
 
 
 
-
-    </div>
+    
 
 {% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}SecondCarousel{% endblock %}
+
+{% block body %}
+    <h1>SecondCarousel</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ second_carousel.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ second_carousel.title }}</td>
+            </tr>
+            <tr>
+                <th>Texte</th>
+                <td>{{ second_carousel.texte }}</td>
+            </tr>
+            <tr>
+                <th>ImageName</th>
+                <td>{{ second_carousel.imageName }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ second_carousel.updatedAt ? second_carousel.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_second_carousel_index') }}">back to list</a>
+
+    <a href="{{ path('admin_second_carousel_edit', {'id': second_carousel.id}) }}">edit</a>
+
+    {{ include('admin_second_carousel/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Edit SecondCarousel{% endblock %}
+
+{% block body %}
+    <h1>Edit SecondCarousel</h1>
+
+    {{ include('admin_second_carousel/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('admin_second_carousel_index') }}">back to list</a>
+
+    {{ include('admin_second_carousel/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}SecondCarousel index{% endblock %}
+
+{% block body %}
+    <h1>SecondCarousel index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Texte</th>
+                <th>ImageName</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for second_carousel in second_carousels %}
+            <tr>
+                <td>{{ second_carousel.id }}</td>
+                <td>{{ second_carousel.title }}</td>
+                <td>{{ second_carousel.texte }}</td>
+                <td>{{ second_carousel.imageName }}</td>
+                <td>{{ second_carousel.updatedAt ? second_carousel.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('admin_second_carousel_show', {'id': second_carousel.id}) }}">show</a>
+                    <a href="{{ path('admin_second_carousel_edit', {'id': second_carousel.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_second_carousel_new') }}">Create new</a>
+{% endblock %}

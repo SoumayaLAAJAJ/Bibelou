@@ -45,7 +45,7 @@
             <div class="card-body d-flex flex-wrap">
                 <div>
                     <h5 class="card-title d-block">{{article.name}}</h5>
-                    <p class="card-text w-100">{{article.description|raw|u.truncate(26, '...')}}</p>
+                    {# <p class="card-text w-100">{{article.description|raw|u.truncate(26, '...')}}</p> #}
                 </div>
                 <div class="d-flex flex-wrap">
                         <a href="{{ path('add-to-cart', {'id': article.id}) }}" class="btn btn-primary align-self-end mt-3 bt-cart">Ajouter au panier</a>
