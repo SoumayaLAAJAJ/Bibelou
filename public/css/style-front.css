@@ -5,8 +5,8 @@
 
 
 /* *{
-    padding: 0;
     margin: 0;
+    padding: 0;
 } */
 
 
@@ -77,7 +77,7 @@ h2{
 /* navbar */
 
 #menu{
-    background-color: #FFD185;
+    background-color: #ffd08531;
 
 }
 
@@ -89,10 +89,7 @@ a.btn-navbar:link, a.btn-navbar:visited{
     color: black;
 }
 
-/* a.btn-navbar:hover, a.btn-navbar:active{
-    color: black;
-    
-} */
+
 
 .full-screen-menu{
     position: absolute;
@@ -142,6 +139,12 @@ img.icone{
 
 }
 
+.bt-navbar-mobile{
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 60%;
+}
+
 
 
 
@@ -158,9 +161,32 @@ img.icone{
 
 }
 
+/* footer */
 .bg-footer{
     background-color: #ff7f50;
 }
+
+a.btn-footer:link{
+    color: black;
+    text-decoration: none;
+}
+
+#footer-1 div ul li{
+    list-style-type:none;
+
+}
+
+#footer-2 ul li{
+    list-style-type:none;
+
+}
+
+
+
+
+
+
+/* MEDIAQUERIES */
 
 /* X-Small devices (portrait phones, less than 576px)
 /* No media query for `xs` since this is the default in Bootstrap */
@@ -182,6 +208,9 @@ img.icone{
 @media (min-width: 768px) { 
     .mobile-visible, .mobile-hidden{
         display: block;
+    }
+    .navbar-mobile{
+        display:none;
     }
     .search-bar-nav{
         display: none;

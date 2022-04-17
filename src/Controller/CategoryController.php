@@ -21,7 +21,7 @@ class CategoryController extends AbstractController
     }
 
 
-            /**
+    /**
      * @Route("/category-detail/{id}", name="category-detail")
      */
     public function detail(int $id, CategoryRepository $categoryRepository): Response{

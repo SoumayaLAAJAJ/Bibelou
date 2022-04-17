@@ -72,7 +72,7 @@ class RegistrationController extends AbstractController
 
             
         }
-        // Le problème viendrait de là !!! 
+        
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),

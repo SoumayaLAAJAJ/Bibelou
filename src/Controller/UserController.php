@@ -46,7 +46,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
         
         $addressForm->handleRequest($request);
-        // pour ajouter adresse :
+        // pour modifier adresse :
         if($addressForm->isSubmitted() && $addressForm->isValid()){
             $adresse->setUser($user);
             // dd($adresse);
@@ -58,7 +58,7 @@ class UserController extends AbstractController
         }
         
         
-// pour modifier le mdp
+        // pour modifier le mdp
         if($form->isSubmitted() && $form->isValid()){
             $plainPassword = $form->get("plainPassword")->getData();
             if(!is_null($plainPassword)){
@@ -73,11 +73,6 @@ class UserController extends AbstractController
             }
             $entityManager->persist($user);
             $entityManager->flush();
-            
-            
-            
-            
-
             
             $this->addFlash("success", "Vos informations ont bien été mises à jour");
             $this->redirectToRoute("profile");

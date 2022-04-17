@@ -4,10 +4,7 @@
 
 {% block body %}
 
-
-
 {{ include('_navMonEspace.html.twig') }}
-
 
 <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -24,20 +21,15 @@
                 <td>Email</td>
                 <td>{{user.email}}</td>
             </tr>
-
             <tr>
                 <td>Adresse</td>
                 {% for adress in user.adresses %}
                 <div class="d-flex flex-wrap">
                     <td>{{ adress.name }} - {{ adress.address }} <br> {{adress.zipcode}} {{adress.city}} </td>
                 </div>
-
-
                 {% endfor %}
             </tr>
-
-        </table>
-        
+        </table>        
     <a href="{{path('edit-profile')}}" class="btn btn-sm bg-success">Modifier</a> 
 </div>
 

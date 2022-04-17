@@ -26,7 +26,6 @@ class UserType extends AbstractType
             ->remove('firstname')
             ->remove('name')
             ->remove('isVerified')
-            // ->add("Sauvegarder", SubmitType::class, ["attr"=>["class"=> "btn btn-danger"]])
         ;
     }
 

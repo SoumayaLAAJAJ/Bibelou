@@ -19,7 +19,7 @@
 
         {# {{dump(app.user)}} #}
         {% if app.user.adresses|length == 0 %}
-            <p>Vous n'avez pas encore ajouter d'adresse dans votre espace. Merci de remplir les champs ci-dessous pour en ajouter une : </p>
+            <p>Vous n'avez pas encore ajouté d'adresse dans votre espace. Merci de remplir les champs ci-dessous pour en ajouter une : </p>
         {{form_start(addressForm)}}
         <div class="row">
             <div class="col-md-6">{{form_row(addressForm.name)}}</div>

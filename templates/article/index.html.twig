@@ -33,11 +33,6 @@
         {% if articles|length > 0 %}
         <div class="row row-book mt-5 row-article">
         {% for article in articles %}
-            {# <div class="col-6 col-md-4 col-xl-3">
-                <a href="#">
-                    <img src="" alt="#" class="img-fluid w-100">
-                </a>
-            </div> #}
             <div class="card m-3" style="width: 18rem;">
             <a href="{{ path('article-detail', {'id': article.id}) }}">
             <img src="{{ asset('images/articles/' ~ article.imageName) }}" class="card-img-top"  alt="...">

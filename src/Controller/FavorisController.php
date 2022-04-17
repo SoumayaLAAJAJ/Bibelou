@@ -40,6 +40,7 @@ class FavorisController extends AbstractController
 
         $entityManagerInterface->persist($user);
         $entityManagerInterface->flush();
+        
         return new Response("ok");
         return $this->render('favoris/index.html.twig', [
             'article' => $article,

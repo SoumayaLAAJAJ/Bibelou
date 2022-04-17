@@ -60,6 +60,10 @@ class ArticleController extends AbstractController
     }
 
 
+
+
+
+    
     /**
      * @Route("/article-detail/{id}", name="article-detail")
      */

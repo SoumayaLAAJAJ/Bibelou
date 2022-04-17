@@ -32,8 +32,6 @@ class UserFixtures extends Fixture
         $user->setIsVerified(true);
         $manager->persist($user);
 
-        // 
-
         $user = new User();
         $user->setFirstname("Jean");
         $user->setName("Neymar");

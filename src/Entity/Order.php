@@ -68,7 +68,7 @@ class Order
     private $stripeSessionId;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $state;
 

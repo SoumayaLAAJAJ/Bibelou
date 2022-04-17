@@ -23,7 +23,7 @@ class Cart
     public function add($id){
 
         $cart = $this->session->get('cart', []);
-        // Revoir cette partie car produit unique donc pas de quantité ++
+        
         if(empty($cart[$id])){
             $cart[$id] = 1;
         }

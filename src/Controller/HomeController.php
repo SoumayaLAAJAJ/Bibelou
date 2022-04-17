@@ -27,15 +27,12 @@ class HomeController extends AbstractController
      */
     public function index(CarouselRepository $carouselRepository, SecondCarouselRepository $secondCarouselRepository): Response
     {
-        // $mail = new Mail();
-        // $mail->send('boutique.bibelou@gmail.com', 'Soum Ljj', 'Mail test', 'Bonjour - test');
+
 
         $articles = $this->entityManager->getRepository(Article::class)->findByIsActu(1);
 
         $articlesAll = $this->entityManager->getRepository(Article::class)->findAll();
         // dd($articles);
-
-        // $categories = $categoryRepository->findAll();
 
 
         return $this->render('home/index.html.twig', [

@@ -56,8 +56,6 @@ class Article
      */
     private $category;
 
-
-
     /**
      * @ORM\ManyToOne(targetEntity=Size::class, inversedBy="articles")
      */
@@ -139,8 +137,6 @@ class Article
     {
         return $this->name;
     }
-
-    
 
     public function setName(string $name): self
     {
