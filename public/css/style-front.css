@@ -90,7 +90,6 @@ a.btn-navbar:link, a.btn-navbar:visited{
 }
 
 
-
 .full-screen-menu{
     position: absolute;
     z-index:1;
@@ -98,7 +97,7 @@ a.btn-navbar:link, a.btn-navbar:visited{
     height:100%;
     top:0;
     left:0;
-}
+} 
 
 .full-screen-menu li{
     display: block;
@@ -200,6 +199,9 @@ a.btn-footer:link{
         display: none;
 
     }
+    .bt-navbar-mobile{
+        display: block;
+    }
 
 }
 
@@ -220,6 +222,9 @@ a.btn-footer:link{
     }
     span{
         display: block;
+    }
+    .bt-navbar-mobile{
+        display: none;
     }
 } 
 

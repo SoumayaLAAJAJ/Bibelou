@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Bibelou!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <link rel="icon" href="{{asset('images/icones/bibelou.png')}}">
         {# CDN FONTAWESOME #}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         
@@ -43,7 +43,7 @@
                 <nav class="navbar navbar-light col-md-5 mobile-hidden">
                     <div class="container-fluid">
                         <form class="d-flex" method="post" action="{{path('search-article')}}">
-                        <input class="form-control me-2" type="text" name="search" placeholder="Rechercher un article" aria-label="Search">
+                        <input class="form-control" type="text" name="search" placeholder="Rechercher un article" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                     </div>
@@ -82,7 +82,7 @@
                     
 
                     
-    <nav class="navbar navbar-expand-lg navbar-light center mb-1 mobile-visible bt-navbar-mobile">
+    <nav class="navbar navbar-expand-lg navbar-light center mb-1 bt-navbar-mobile">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -126,7 +126,7 @@
     <h2>Premier site de upcycling 100% inclusif et accessible</h2>
 
 {# NAVBAR #}
-    <nav class="navbar navbar-expand-lg navbar-light center mb-1 mobile-hidden" id="menu">
+    <nav class="navbar navbar-expand-lg navbar-light center mobile-hidden" id="menu">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -161,8 +161,8 @@
         </div>
     </nav>
 {# FIN NAVBAR #}
-        <div class="container-fluid">
-            <div class="row mb-3">
+        <div>
+            <div class="row mb-1">
                 <div class="col bordure rouge"></div>
                 <div class="col bordure orange"></div>
                 <div class="col bordure jaune"></div>
